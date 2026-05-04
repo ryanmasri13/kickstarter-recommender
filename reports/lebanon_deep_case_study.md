@@ -1,12 +1,12 @@
 # Lebanon Case Study (Deep)
 
-_Supplement to the proposal's Lebanon angle. Subgroup N = 49 campaigns is too small for reliable subgroup metrics, so this appendix is qualitative._
+_Supplement to the proposal's Lebanon angle. Subgroup N = 49 campaigns is too small for reliable subgroup metrics, so this study is qualitative._
 
 - Subgroup base rate: **65.3%**  (full-dataset base rate: 64.5%).
 - Distinct categories represented: **10**.
 - Distinct countries represented: **7**.
 
-Why qualitative? At N≈49 the confidence interval on AUROC spans roughly 0.66 to 0.93, which is uninformative. Five detailed walk-throughs and three persona simulations carry more diagnostic weight than one noisy subgroup AUROC.
+Why qualitative? With N≈49, subgroup metrics are highly unstable: a handful of campaigns can swing AUROC/precision/recall noticeably. Instead of over interpreting a noisy number, we use detailed walk throughs and a few persona simulations to show how the recommender behaves and what kinds of pre launch fixes it suggests.
 
 ---
 
@@ -121,7 +121,7 @@ Why qualitative? At N≈49 the confidence interval on AUROC spans roughly 0.66 t
 4. A small dose of energy helps - consider rephrasing to sound more confident.  *(SHAP=-0.073)*
 5. Your launch month (February) is a weaker month for this category. Consider shifting the launch.  *(SHAP=-0.055)*
 
-**Reading:** Multiple recommendations triggered. Each one identifies a feature the creator could change before launching. Even at this small N, the same patterns (over-long duration, no video, oversized goal) recur across the failed campaigns.
+**Reading:** Multiple recommendations triggered. Each one identifies a feature the creator could change before launching. Even at this small N, the same patterns (over long duration, no video, oversized goal) recur across the failed campaigns.
 
 ---
 
@@ -193,7 +193,7 @@ Why qualitative? At N≈49 the confidence interval on AUROC spans roughly 0.66 t
 3. Your planned launch day-of-week (Friday) is associated with lower success. Tuesdays and Wednesdays tend to perform best.  *(SHAP=-0.140)*
 4. A small dose of energy helps - consider rephrasing to sound more confident.  *(SHAP=-0.059)*
 
-**Reading:** Worth taking seriously. The tabular features missed something — almost certainly community trust, narrative quality of the blurb, or pre-launch audience built outside Kickstarter. This is a humility check on the recommender: a low score is not a verdict, it's a signal to investigate.
+**Reading:** Worth taking seriously. The tabular features missed something, most likely community trust, narrative quality of the blurb, or pre launch audience built outside Kickstarter. This is a humility check on the recommender: a low score is a to investigate.
 
 ---
 
@@ -304,18 +304,18 @@ Three plausible Lebanese-diaspora creator profiles, run through the recommender 
 4. Adding a concrete number to your blurb (e.g., page count, run time, dimensions) tends to help.  *(SHAP=-0.052)*
 5. Your planned launch day-of-week (Saturday) is associated with lower success. Tuesdays and Wednesdays tend to perform best.  *(SHAP=-0.051)*
 
-**Reading:** The hardest case for the recommender. Country=LB is rare in the training data (most Kickstarter campaigns are US/GB/CA), the duration is over the sweet spot, and there's no video. This is precisely the under-represented profile the proposal targets — and exactly where the model's confidence is weakest. We surface that uncertainty rather than hide it.
+**Reading:** The hardest case for the recommender. Country=LB is rare in the training data (most Kickstarter campaigns are US/GB/CA), the duration is over the sweet spot, and there's no video. This is precisely the under represented profile the proposal targets, and exactly where the model's confidence is weakest. We surface that uncertainty rather than hide it.
 
 ---
 
 ## What this case study does and doesn't show
 
 **Does show:**
-- The recommender works on Lebanon-related campaigns at the same shape   it works elsewhere — when the model flags risk, the failure rate is   meaningfully higher; when it predicts a win, success is more likely.
+- The recommender works on Lebanon-related campaigns at the same shape it works elsewhere — when the model flags risk, the failure rate is   meaningfully higher; when it predicts a win, success is more likely.
 - The advice it surfaces is concrete and feature-specific, not generic.
-- The most common Lebanon-campaign failure modes mirror the global   ones: overlong duration, no video, oversized goal.
+- The most common Lebanon-campaign failure modes mirror the global ones: overlong duration, no video, oversized goal.
 
 **Does NOT show:**
-- Statistical reliability of subgroup metrics — N is far too small.
-- That following the advice would have changed outcomes — the model is   correlational and the case studies cannot establish causation.
-- That campaigns from Lebanon (country=LB) are well-represented — they   are not, and Persona 3 highlights this.
+- Statistical reliability of subgroup metrics — N is way too small.
+- That following the advice would have changed outcomes — the model is correlational and the case studies cannot establish causation.
+- That campaigns from Lebanon (country=LB) are well-represented, since they definitely are not, and especially Persona 3 highlights this.
